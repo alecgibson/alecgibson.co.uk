@@ -1,19 +1,22 @@
 language: java
-
 jdk: oraclejdk8
-
-# Avoid uploading the Gradle cache to Travis
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
-# See https://github.com/travis-ci/travis-ci/issues/3259#issuecomment-130860338
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 sudo: false
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+    - oracle-java8-installer
+deploy:
+  provider: gcs
+  access_key_id: GOOGL33JMGAHYXRY4FDT
+  secret_access_key:
+    secure: iy136LJ6n4aNjZxT5HDZ7AAkGlaD4v0SCCmSGqpDoc5Ew9Ed8XoSjpKV+Gl5iat8tMovOuW2tZjuCFmIGmyoQd4yB+oETbGHha9P5Ev47iCkXCydqmZzqdojK9qnLzMoh+MtLiRNKnQMswgZUgK9+q6ZoUfvyzj/oDyXKjzsiYuBAqzhGGtLc27Csu5pLL+AC6u2z2A3UY7QX+hb1F/DnNjojJvQLpBBsHkMZF0v7QINHRt/UoPh56oedeW+JDYHcKewn1BR4Mga9OGBCQAC/HMF6h6Gm1LjAfsC/cxZdC9qZBL++wWGF6jI6elX4xnEXAhWrJQHNgda3byl+mNDRKxbq3GmrLc/p4Clt3SnAtM1+uZ5Fly8w11SJFsjegcLTGGLlDWFlhm3VFd2axoNpVwI1XpbA2nSDTCdyNWMdE24VoeQWgFrAMwuFAtkG1ITPn1IKm3IQRrkSu2z6GkarI8aJoMcpVoxS0SWIn4wLgOXj6jp8cbm2TGxoe3Dhh6EHvRAfQUAaedDCi2r378xH4fcmXA6H4D0l0+obmO66RqXEgpYebTmqKl1UHSCBY8N+6G0ZpD7KGs6q36SRaca4bEdV9whx50JvmS1PNgrItU7bKetbsnyfZn5yjG5viacXPd+0//XT9wW8EyT3AVUthnADMB3eCcEnVIPkXUPQss=
+  bucket: alecgibson
+  on:
+    repo: alecgibson/alecgibson.co.uk

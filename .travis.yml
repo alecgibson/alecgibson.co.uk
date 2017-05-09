@@ -1,19 +1,16 @@
-language: java
-
-jdk: oraclejdk8
-
-# Avoid uploading the Gradle cache to Travis
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
-# See https://github.com/travis-ci/travis-ci/issues/3259#issuecomment-130860338
 sudo: false
+language: java
+before_install:
+- openssl aes-256-cbc -K $encrypted_de05a52b3035_key -iv $encrypted_de05a52b3035_iv -in alecgibson-8171e9d468ec.json.enc -out alecgibson-8171e9d468ec.json -d
+jdk: oraclejdk8
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+    - oracle-java8-installer
+deploy:
+  provider: gae
+  skip_cleanup: true
+  keyfile: alecgibson-8171e9d468ec.json
+  project: alecgibson-166606
+  default: true
+  on: master

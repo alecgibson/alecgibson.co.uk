@@ -1,7 +1,8 @@
 sudo: false
 language: java
 before_install:
-- openssl aes-256-cbc -K $encrypted_de05a52b3035_key -iv $encrypted_de05a52b3035_iv -in alecgibson-8171e9d468ec.json.enc -out alecgibson-8171e9d468ec.json -d
+- openssl aes-256-cbc -K $encrypted_de05a52b3035_key -iv $encrypted_de05a52b3035_iv
+  -in alecgibson-efee5c6896f7.json.enc -out alecgibson-efee5c6896f7.json -d
 jdk: oraclejdk8
 addons:
   apt:
@@ -9,8 +10,7 @@ addons:
     - oracle-java8-installer
 deploy:
   provider: gae
-  skip_cleanup: true
-  keyfile: alecgibson-8171e9d468ec.json
-  project: alecgibson-166606
+  keyfile: alecgibson-efee5c6896f7.json
+  project: alecgibson-167206
   default: true
   on: master

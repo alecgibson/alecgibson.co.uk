@@ -158,25 +158,27 @@
     </plugin>
     <!-- END plugin -->
     <plugin>
-      <artifactId>maven-assembly-plugin</artifactId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <version>3.0.2</version>
       <executions>
         <execution>
+          <id>copy-resources</id>
+          <!-- here the phase you need -->
           <phase>package</phase>
           <goals>
-            <goal>single</goal>
+            <goal>copy-resources</goal>
           </goals>
+          <configuration>
+            <outputDirectory>${basedir}/target</outputDirectory>
+            <resources>
+              <resource>
+                <directory>src/main/appengine</directory>
+                <filtering>true</filtering>
+              </resource>
+            </resources>
+          </configuration>
         </execution>
       </executions>
-      <configuration>
-        <descriptorRefs>
-          <descriptorRef>jar-with-dependencies</descriptorRef>
-        </descriptorRefs>
-        <archive>
-          <manifest>
-            <mainClass>com.example.java.gettingstarted.HelloworldApplication</mainClass>
-          </manifest>
-        </archive>
-      </configuration>
     </plugin>
   </plugins>
   </build>
